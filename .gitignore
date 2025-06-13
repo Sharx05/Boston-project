@@ -1,8 +1,44 @@
-cd "C:\Users\shara\OneDrive\Desktop\py project"
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-git init
-git add .
-git commit -m "Initial commit with Flask app"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/house-price-prediction.git
-git push -u origin main
+# Environment
+.env
+venv/
+ENV/
+env/
+.venv/
+
+# Flask and model files
+instance/
+*.pkl
+*.h5
+*.model
+
+# Jupyter Notebooks (if any)
+.ipynb_checkpoints
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VSCode or IDE settings
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Compiled C files
+*.so
+
+# HTML cache
+*.swp
+
+# Python egg
+*.egg-info/
+dist/
+build/
