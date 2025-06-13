@@ -1,0 +1,8 @@
+cd "C:\Users\shara\OneDrive\Desktop\py project"
+
+git init
+git add .
+git commit -m "Initial commit with Flask app"
+git branch -M main
+git remote add origin https://github.com/YOUR-USERNAME/house-price-prediction.git
+git push -u origin main
