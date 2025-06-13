@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boston House Price Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: #fff;
+            font-size: 36px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            width: 450px;
+            margin: 30px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0072ff;
+            box-shadow: 0 0 5px rgba(0, 114, 255, 0.5);
+            outline: none;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #0072ff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005ecb;
+        }
+
+        .result {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        /* Toast Message */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein {
+            from { bottom: 0; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
+        }
+
+        @keyframes fadeout {
+            from { bottom: 30px; opacity: 1; }
+            to { bottom: 0; opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Boston House Price Prediction</h1>
+
+    <form action="/predict" method="post" onsubmit="return showToast()">
+        <label>CRIM</label>
+        <input type="text" name="CRIM" required>
+
+        <label>ZN</label>
+        <input type="text" name="ZN" required>
+
+        <label>INDUS</label>
+        <input type="text" name="INDUS" required>
+
+        <label>CHAS</label>
+        <input type="text" name="CHAS" required>
+
+        <label>NOX</label>
+        <input type="text" name="NOX" required>
+
+        <label>RM</label>
+        <input type="text" name="RM" required>
+
+        <label>AGE</label>
+        <input type="text" name="AGE" required>
+
+        <label>DIS</label>
+        <input type="text" name="DIS" required>
+
+        <label>RAD</label>
+        <input type="text" name="RAD" required>
+
+        <label>TAX</label>
+        <input type="text" name="TAX" required>
+
+        <label>PTRATIO</label>
+        <input type="text" name="PTRATIO" required>
+
+        <label>B</label>
+        <input type="text" name="B" required>
+
+        <label>LSTAT</label>
+        <input type="text" name="LSTAT" required>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+
+    <!-- Toast -->
+    <div id="toast">Processing Prediction...</div>
+
+    <script>
+        function showToast() {
+            let toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
+            return true; // allow form to submit
+        }
+    </script>
+
+</body>
+</html>
